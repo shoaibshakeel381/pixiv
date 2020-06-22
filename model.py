@@ -106,4 +106,5 @@ class PixivIllustModel(PixivModel):
             else:
                 illust = cls.create_illust_from_data(data, user)
                 illusts.append(illust)
+        illusts = sorted(illusts, key=lambda object1: object1.id, reverse=True)
         return illusts

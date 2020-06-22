@@ -166,8 +166,11 @@ def get_filepath(url, illustration, save_path='.', add_user_folder=False, add_ra
         save_path = os.path.join(save_path, dir_name)
 
     filename = url.split('/')[-1]
+    # name, ext = os.path.splitext(filename)
     if add_rank:
+        # name = illustration.rank + ' - ' + name
         filename = illustration.rank + ' - ' + filename
+    # filename = name + ' - ' + illustration.title + ext
     filepath = os.path.join(save_path, filename)
     return filename, filepath
 
@@ -180,6 +183,8 @@ def check_files(illustrations, save_path='.', add_user_folder=False, add_rank=Fa
         last_i = -1
         for index, illustration in enumerate(illustrations):
             if not illustration.image_urls:
+                continue
+            elif illustration.type == 'ugoira':
                 continue
             else:
                 for url in illustration.image_urls:
